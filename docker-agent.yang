@@ -1,0 +1,75 @@
+module docker-agent {
+    namespace "urn:CTTC:docker-agent";
+    prefix docker-agent;
+    organization "CTTC";
+    contact "ricard(dot)vilalta(at)cttc(dot)es";
+    description "YANG model for a REST SDN docker agent";
+    revision 2016-06-17 {
+        description "Latest revision";
+    }
+    
+    grouping Container {
+        leaf ContainerId {
+            type string;
+        }
+        leaf Hostname {
+            type string;
+        }
+        leaf Memory {
+            type uint64;
+        }
+        leaf Privileged {
+            type boolean;
+        }
+        leaf Image {
+            type string;
+        }
+    }
+    
+    grouping Image {
+        leaf Repository {
+            type string;
+        }
+        leaf Tag {
+            type string;
+        }
+        leaf ImageId {
+            type string;
+        }
+        leaf Created {
+            type string;
+        }
+        leaf Size {
+            type uint64;
+        }
+        leaf VirtualSize {
+            type uint64;
+        }
+    }
+    
+    list Container {
+        key "ContainerId";
+        uses Container;
+    }
+    
+    list Image {
+        key "ImageId";
+        uses Image;
+    }
+    
+    rpc ContainerExec {
+        input {
+            leaf ContainerId {
+                type string;
+            }
+            leaf Command {
+                type string;
+            } 
+        }
+        output {
+            leaf Result {
+                type string;
+            }
+        }
+    }     
+}

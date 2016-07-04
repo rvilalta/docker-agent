@@ -1,0 +1,336 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "description": "docker-agent API generated from docker-agent.yang",
+        "title": "docker-agent API"
+    },
+    "host": "localhost:8080",
+    "basePath": "/restconf",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/config/Container/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "items": {
+                                "type": "string",
+                                "x-path": "/Container/{ContainerId}/"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "400": {
+                        "description": "Internal Error"
+                    }
+                },
+                "description": "Retrieve operation of resource: Container",
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Retrieve Container",
+                "consumes": [
+                    "application/json"
+                ],
+                "operationId": "retrieveContainer"
+            }
+        },
+        "/config/Container/{ContainerId}/": {
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Internal Error"
+                    }
+                },
+                "description": "Update operation of resource: Container",
+                "parameters": [
+                    {
+                        "description": "ID of ContainerId",
+                        "required": true,
+                        "type": "string",
+                        "name": "ContainerId",
+                        "in": "path"
+                    },
+                    {
+                        "required": true,
+                        "description": "Containerbody object",
+                        "schema": {
+                            "$ref": "#/definitions/Container"
+                        },
+                        "name": "Container",
+                        "in": "body"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update Container by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "operationId": "updateContainerContainerById"
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Internal Error"
+                    }
+                },
+                "description": "Create operation of resource: Container",
+                "parameters": [
+                    {
+                        "description": "ID of ContainerId",
+                        "required": true,
+                        "type": "string",
+                        "name": "ContainerId",
+                        "in": "path"
+                    },
+                    {
+                        "required": true,
+                        "description": "Containerbody object",
+                        "schema": {
+                            "$ref": "#/definitions/Container"
+                        },
+                        "name": "Container",
+                        "in": "body"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create Container by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "operationId": "createContainerContainerById"
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Internal Error"
+                    }
+                },
+                "description": "Delete operation of resource: Container",
+                "parameters": [
+                    {
+                        "description": "ID of ContainerId",
+                        "required": true,
+                        "type": "string",
+                        "name": "ContainerId",
+                        "in": "path"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete Container by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "operationId": "deleteContainerContainerById"
+            },
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Container"
+                        }
+                    },
+                    "400": {
+                        "description": "Internal Error"
+                    }
+                },
+                "description": "Retrieve operation of resource: Container",
+                "parameters": [
+                    {
+                        "description": "ID of ContainerId",
+                        "required": true,
+                        "type": "string",
+                        "name": "ContainerId",
+                        "in": "path"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Retrieve Container by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "operationId": "retrieveContainerContainerById"
+            }
+        },
+        "/config/Image/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "items": {
+                                "type": "string",
+                                "x-path": "/Image/{ImageId}/"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "400": {
+                        "description": "Internal Error"
+                    }
+                },
+                "description": "Retrieve operation of resource: Image",
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Retrieve Image",
+                "consumes": [
+                    "application/json"
+                ],
+                "operationId": "retrieveImage"
+            }
+        },
+        "/config/Image/{ImageId}/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Image"
+                        }
+                    },
+                    "400": {
+                        "description": "Internal Error"
+                    }
+                },
+                "description": "Retrieve operation of resource: Image",
+                "parameters": [
+                    {
+                        "description": "ID of ImageId",
+                        "required": true,
+                        "type": "string",
+                        "name": "ImageId",
+                        "in": "path"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Retrieve Image by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "operationId": "retrieveImageImageById"
+            }
+        },
+        "/operations/ContainerExec/": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ContainerExecRPCOutputSchema"
+                        }
+                    },
+                    "400": {
+                        "description": "Internal Error"
+                    }
+                },
+                "description": "Create operation of resource: ContainerExec",
+                "parameters": [
+                    {
+                        "required": true,
+                        "description": "ContainerExecbody object",
+                        "schema": {
+                            "$ref": "#/definitions/ContainerExecRPCInputSchema"
+                        },
+                        "name": "ContainerExec",
+                        "in": "body"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create ContainerExec by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "operationId": "createContainerExecById"
+            }
+        }
+    },
+    "definitions": {
+        "Image": {
+            "properties": {
+                "Repository": {
+                    "type": "string"
+                },
+                "Created": {
+                    "type": "string"
+                },
+                "ImageId": {
+                    "type": "string"
+                },
+                "Tag": {
+                    "type": "string"
+                },
+                "VirtualSize": {
+                    "type": "string"
+                },
+                "Size": {
+                    "type": "string"
+                }
+            }
+        },
+        "Container": {
+            "properties": {
+                "Status": {
+                    "type": "string"
+                },
+                "Image": {
+                    "type": "string"
+                },
+                "Hostname": {
+                    "type": "string"
+                },
+                "ContainerId": {
+                    "type": "string"
+                },
+                "Created": {
+                    "type": "string"
+                }
+            }
+        },
+        "ContainerExecRPCInputSchema": {
+            "properties": {
+                "Command": {
+                    "type": "string"
+                },
+                "ContainerId": {
+                    "type": "string"
+                }
+            }
+        },
+        "ContainerExecRPCOutputSchema": {
+            "properties": {
+                "Result": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

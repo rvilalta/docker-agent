@@ -15,11 +15,11 @@ module docker-agent {
         leaf Hostname {
             type string;
         }
-        leaf Memory {
-            type uint64;
+        leaf Created {
+            type string;
         }
-        leaf Privileged {
-            type boolean;
+        leaf Status {
+            type string;
         }
         leaf Image {
             type string;
@@ -53,6 +53,7 @@ module docker-agent {
     }
     
     list Image {
+	config false;
         key "ImageId";
         uses Image;
     }

@@ -7,7 +7,6 @@ class Container(JsonObject):
         self.Hostname=""
         self.Created=""
         self.Status=""
-        self.Name=""
         self.Ip=""
         self.ContainerId=""
         super(Container, self).__init__(json_struct)

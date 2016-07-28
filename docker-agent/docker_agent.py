@@ -282,26 +282,19 @@ class ContainerexecMethodView(MethodView):
 
     def post(self, ):
         print "Create operation of resource: ContainerExec"
-        try:
-            response = ContainerexecImpl.get()
-        except KeyError as inst:
-            if inst.args[0] != '':
+        json_struct = request.get_json() #json parser.
+        new_object = create_instance(ContainerExecRPCInputSchema, json_struct)
+        if isinstance(new_object, BadRequestError):
+            return new_object
+        elif isinstance(new_object, NotFoundError):
+            return new_object
+        else:
+            try:
+               ContainerexecImpl.post(new_object)
+               js=new_object.json_serializer()
+            except KeyError as inst:
                 return NotFoundError(inst.args[0] + " not found")
 
-            json_struct = request.get_json() #json parser.
-            new_object = create_instance(ContainerExecRPCInputSchema, json_struct)
-            if isinstance(new_object, BadRequestError):
-                return new_object
-            elif isinstance(new_object, NotFoundError):
-                return new_object
-            else:
-                try:
-                    ContainerexecImpl.post(new_object)
-                    js=new_object.json_serializer()
-                except KeyError as inst:
-                    return NotFoundError(inst.args[0] + " not found")
-        else:
-            return BadRequestError("Object already exists. For updates use PUT.")
         return Successful("Successful operation",json_dumps(js))
 
 

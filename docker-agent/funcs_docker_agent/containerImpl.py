@@ -13,6 +13,13 @@ class ContainerImpl:
 
     @classmethod
     def get(cls, ):
-        print 'handling get' 
+        print 'handling get'
+        r = requests.get(URL)
+        json_response=json.loads(r.text)
+	be.Container.clear()
+        for container in json_response:
+            print container
+            name = container['Names'][0].split("/")[1]
+            be.Container[name]=Container({"ContainerId":name, "Image": container['Image'], "Hostname":HOSTNAME, "Created":str(container["Created"]), "Status": container["Status"] })    
         return be.Container
 

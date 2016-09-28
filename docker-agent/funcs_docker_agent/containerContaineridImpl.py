@@ -6,6 +6,7 @@ from funcs_docker_agent.containerImpl import ContainerImpl
 import time
 
 OVS_BRIDGE="ovs-br1"
+HOSTNAME = "docker1"
 
 
 class ContainerContaineridImpl:
@@ -32,7 +33,17 @@ class ContainerContaineridImpl:
         cmd="docker exec " + container.ContainerId + " ifconfig eth0 " + container.Ip
 	print (cmd)
         os.system(cmd)
-	ContainerImpl.get()
+
+        OvsPortName=ContainerImpl.get_ovs_port_name(ContainerId)
+
+        be.Container[ContainerId]=Container({"ContainerId":ContainerId, "Image": container.Image, "Hostname":HOSTNAME, "Created":"", "Status": "", "OvsPortName":OvsPortName, "Ip": container.Ip })
+        ContainerImpl.update_info()
+        container.OvsPortName = be.Container[ContainerId].OvsPortName
+        container.Created = be.Container[ContainerId].Created
+        container.Status = be.Container[ContainerId].Status
+        container.Hostname = be.Container[ContainerId].Hostname
+        return be.Container[ContainerId]
+        
 
     @classmethod
     def delete(cls, ContainerId):
@@ -46,14 +57,15 @@ class ContainerContaineridImpl:
             print cmd
             os.system(cmd)
             
-            ContainerImpl.get()           
+            del be.Container[ContainerId]
+          
         else:
             raise KeyError('ContainerId')
 
     @classmethod
     def get(cls, ContainerId):
         print 'handling get'
-	ContainerImpl.get()
+	ContainerImpl.update_info()
         if ContainerId in be.Container:
             return be.Container[ContainerId]
         else:

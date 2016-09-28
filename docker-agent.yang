@@ -24,6 +24,12 @@ module docker-agent {
         leaf Image {
             type string;
         }
+        leaf Ip {
+            type string;
+        }
+        leaf OvsPortName {
+            type string;
+        }
     }
     
     grouping Image {
